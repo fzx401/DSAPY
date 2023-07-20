@@ -58,8 +58,9 @@ class BiDLinkedList:
                 cur = cur.next
             new_node.prev = cur
             new_node.next = cur.next
-            cur.next = new_node
             cur.next.prev = new_node
+            cur.next = new_node
+            
     
     def travel(self)->list:
         if not self.head:
