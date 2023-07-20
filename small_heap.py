@@ -24,3 +24,4 @@ def build_min_heap(nums):
 
 nums = [1, 2, 3, 4, 5]
 print(build_min_heap(nums[::-1]))
+print
