@@ -58,16 +58,22 @@ class Heap:
         for i in range(n // 2 -1, -1, -1):
             self.heapify(arr, n, i)
             
-    def heap_sort(self, arr : list)-> list:
-        if self.heap_type == 'max':
+    def heap_sort(self, arr : list, order : str = 'asc')-> list:
+        if order not in ('asc', 'desc'):
+            raise ValueError('order must in asc or desc')
+        if self.heap_type == 'max' and order == 'asc':
             self.build_heap(arr)
             for i in range(len(arr), 1, -1):
                 arr[0], arr[i-1] = arr[i-1], arr[0]
                 self.heapify(arr, i-1, 0)
-        
+        elif self.heap_type == 'max' and order == 'desc':
+            
         else:
             self.build_heap(arr)
-            for i in range(0, len(arr)-1):
-                arr[i], arr[-1] = arr[-1], arr[0]
-                self.heapify(arr, len(arr) - i - 1, i+1)
+            res = []
+            tmp = arr[:]
+            for i in range(0, len(arr)):
+                res.append(tmp[0])
+                tmp = tmp[1:]
+                self.build_heap(tmp)
 
