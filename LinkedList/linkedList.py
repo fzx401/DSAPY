@@ -22,7 +22,8 @@ class LinkList:
             cur.next = tmp
             cur = tmp
         return head
-
+    
+    @property
     def is_empty(self):
         return self.head is None
 
@@ -81,3 +82,15 @@ class LinkList:
             new_node.next = pre.next
             pre.next = new_node
 
+    def reverseList(self)-> Node:
+        if self.is_empty:
+            raise ValueError('链表为空')
+        cur = self.head
+        pre = None
+        
+        while cur:
+            tmp = cur.next
+            cur.next = pre
+            pre = cur
+            cur = tmp
+        return pre
