@@ -1,16 +1,31 @@
 import random
-from Heap.Heap import Heap
+from BinaryTree.heap import Heap
 
+heap = Heap(heap_type='min')
+print(heap)
 
-def heap_sort(arr : list)-> None:
-    heap = Heap(heap_type='min')
-    heap.build_heap(arr)
-    heap.heap_sort(arr)
+heap2 = Heap(heap_type='min')
+print(heap2)
 
-random.seed(5)
-nums = [random.randint(0, 7) for _ in range(10)]
-print(nums)
-heap_sort(nums)
-print(nums)
+heap3 = Heap(heap_type='max')
+print(heap3)
 
+if not heap:
+    print('singleton yes')
+# random.seed(4)
+# nums = [random.randint(0, 7) for _ in range(6)]
+# print('---before---')
+# print('---array---')
+# print(nums)
+# print('-------')
+# print('\n')
 
+# heap.build_heap(nums)
+# print('---after---')
+# print('---heap---')
+# print(nums)
+
+# heap.heap_sort(nums, order='desc')
+# print('---after---')
+# print('---heap sort(asc)---')
+# print(nums)

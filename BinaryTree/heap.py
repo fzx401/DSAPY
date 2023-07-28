@@ -1,7 +1,7 @@
 
 class Heap:
     """
-    根据初始化时的堆类型生成相应的小根堆或大根堆
+    python实现堆结构
     """
     __instance = None
     
@@ -21,7 +21,14 @@ class Heap:
             self.heap_type = heap_type
             self.heapify = self._min_heapify
     
-    def _max_heapify(self, arr, n, i):
+    def _max_heapify(self, arr: list, n: int, i: int):
+        """大根堆化
+
+        Args:
+            arr (_type_): 数组
+            n (_type_): 堆化的长度
+            i (_type_): 堆根节点下标
+        """
         largest = i  # 初始化最大值为根节点
         left = 2 * i + 1
         right = 2 * i + 2
@@ -39,7 +46,14 @@ class Heap:
             arr[i], arr[largest] = arr[largest], arr[i]
             self.heapify(arr, n, largest)
     
-    def _min_heapify(self, arr, n, i):
+    def _min_heapify(self, arr: list, n: int, i: int):
+        """小根堆化
+
+        Args:
+            arr (_type_): 数组
+            n (_type_): 堆化的长度
+            i (_type_): 堆根节点下标
+        """
         smallest = i
         left = 2 * i + 1
         right = 2 * i + 2
@@ -53,27 +67,57 @@ class Heap:
             self._min_heapify(arr, n, smallest)
             
     
-    def build_heap(self, arr : list)-> "Heap":
+    def build_heap(self, arr : list)-> None:
+        """将数组以堆的形式表示
+
+        Args:
+            arr (list): 数组
+
+        Returns:
+            None
+        """
         n = len(arr)
         for i in range(n // 2 -1, -1, -1):
             self.heapify(arr, n, i)
             
-    def heap_sort(self, arr : list, order : str = 'asc')-> list:
+    def heap_sort(self, arr : list, order : str = 'asc')-> None:
+        """指定堆类型及堆排序方式[升序or降序]
+        注：大根堆求降序和小根堆求升序的时间复杂度上升为n^2*logn
+
+        Args:
+            arr (list): 堆的列表表示
+            order (str, optional): 堆排序方式，默认为升序.
+
+        Raises:
+            ValueError: 排序方式输入错误
+
+        Returns:
+            None
+        """
         if order not in ('asc', 'desc'):
-            raise ValueError('order must in asc or desc')
+            raise ValueError('排序方式必须为升序或降序')
+        
         if self.heap_type == 'max' and order == 'asc':
             self.build_heap(arr)
             for i in range(len(arr), 1, -1):
                 arr[0], arr[i-1] = arr[i-1], arr[0]
                 self.heapify(arr, i-1, 0)
         elif self.heap_type == 'max' and order == 'desc':
-            
-        else:
             self.build_heap(arr)
-            res = []
             tmp = arr[:]
             for i in range(0, len(arr)):
-                res.append(tmp[0])
+                arr[i] = tmp[0]
                 tmp = tmp[1:]
                 self.build_heap(tmp)
-
+        elif self.heap_type == 'min' and order == 'asc':
+            self.build_heap(arr)
+            tmp = arr[:]
+            for i in range(0, len(arr)):
+                arr[i] = tmp[0]
+                tmp = tmp[1:]
+                self.build_heap(tmp)
+        else:
+            self.build_heap(arr)
+            for i in range(len(arr), 1, -1):
+                arr[0], arr[i-1] = arr[i-1], arr[0]
+                self.heapify(arr, i-1, 0)

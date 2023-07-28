@@ -2,8 +2,6 @@ from pydantic import BaseModel
 from typing import Any
 
 
-__all__ = ['BinaryTree']
-
 class BinaryTree(BaseModel):
     val : Any = None
     leftChild : "BinaryTree" = None

@@ -1,7 +1,6 @@
 from typing import Union, List
 from pydantic import BaseModel, StrictInt, StrictFloat
 
-__all__ = ['BinarySearchTree']
 class BinarySearchTree(BaseModel):
 
     val: Union[StrictInt, StrictFloat, None] = None
