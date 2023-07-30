@@ -90,6 +90,9 @@ class BinaryTree(BaseModel):
     @property
     def length(self)-> int:
         return len(self.inorder_traversal())
+    
+    def __str__(self) -> str:
+        return f'This is a {self.length} length, {self.height} height binary tree'
 
 if __name__ == "__main__":
     tree = BinaryTree(val=1)
