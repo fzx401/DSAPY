@@ -29,7 +29,7 @@ class Deque(BiDLinkedList):
         return self.popleft()
     
     def peek(self) -> "Node":
-        return self.head
+        return self.head.data
     
     
 if __name__ == "__main__":
@@ -38,4 +38,4 @@ if __name__ == "__main__":
     q.append(4)
     q.append(5)
     peek = q.peek()
-    pass
+    print(peek)

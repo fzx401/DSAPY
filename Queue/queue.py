@@ -18,6 +18,9 @@ class Queue(LinkList):
         tmp = self.head
         self.remove(self.head.data)
         return tmp
+    
+    def peek(self)->"Node":
+        return self.head.data
 
 if __name__ == "__main__":
     q = Queue()
